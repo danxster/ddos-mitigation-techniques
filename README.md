@@ -21,8 +21,11 @@ iptables -A INPUT -p udp --dport 53 -m recent --update --seconds 60 --hitcount 1
 #Webserver:
 
 iptables -F
+
 iptables -X
+
 iptables -N ATTACKED
+
 iptables -N ATTK_CHECK
 iptables -N SYN_FLOOD
 iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
