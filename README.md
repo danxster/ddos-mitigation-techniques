@@ -1,7 +1,7 @@
 ddos-mitigation-techniques
 ==========================
 
-Dns:
+#Dns:
 
 #create a new table
 iptables -N RATELIMITER
@@ -18,7 +18,7 @@ iptables -I INPUT -p udp --dport 53 -j RATELIMITER
 iptables -A INPUT -p udp --dport 53 --set --name dnslimit
 iptables -A INPUT -p udp --dport 53 -m recent --update --seconds 60 --hitcount 11 --name dnslimit -j DROP
 
-Webserver:
+#Webserver:
 
 iptables -F
 iptables -X
