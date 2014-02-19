@@ -1,24 +1,23 @@
 ddos-mitigation-techniques
 ==========================
 
-#Dns:
+#DNS Server:
 
-#create a new table
+<b>create a new table
+
 iptables -N RATELIMITER
 
-# have that drop requests when they start getting too frequent
+<b>have that drop requests when they start getting too frequent
+
 iptables -I RATELIMITER -m hashlimit    --hashlimit-name DNS --hashlimit-above 50/minute --hashlimit-mode srcip    --hashlimit-burst 100 --hashlimit-srcmask 28 -j DROP
 
-# send all incoming requests through that table
+<b>send all incoming requests through that table
+
 iptables -I INPUT -p udp --dport 53 -j RATELIMITER
 
-*******below does noes work for icmp traffic*******
-**this is the most popular method**
 
-iptables -A INPUT -p udp --dport 53 --set --name dnslimit
-iptables -A INPUT -p udp --dport 53 -m recent --update --seconds 60 --hitcount 11 --name dnslimit -j DROP
 
-#Webserver:
+#Web Server:
 
 iptables -F
 
