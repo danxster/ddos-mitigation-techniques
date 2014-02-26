@@ -9,7 +9,7 @@ iptables -N RATELIMITER
 
 <b>have that drop requests when they start getting too frequent
 
-iptables -I RATELIMITER -m hashlimit    --hashlimit-name DNS --hashlimit-above 50/minute --hashlimit-mode srcip    --hashlimit-burst 100 --hashlimit-srcmask 28 -j DROP
+iptables -I RATELIMITER -m hashlimit    --hashlimit-name DNS --hashlimit-above 20/second --hashlimit-mode srcip    --hashlimit-burst 100 --hashlimit-srcmask 28 -j DROP
 
 <b>send all incoming requests through that table
 
